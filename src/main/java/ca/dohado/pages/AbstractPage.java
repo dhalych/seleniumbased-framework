@@ -2,19 +2,19 @@ package ca.dohado.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
 public abstract class AbstractPage {
     protected WebDriver driver;
-    protected WebDriverWait wait;
+    protected Wait<?> wait;
     @Value("${download.path}")
     private String downloadPath;
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public AbstractPage(WebDriver driver, WebDriverWait wait) {
+    public AbstractPage(WebDriver driver, Wait<?> wait) {
         this.driver = driver;
         this.wait = wait;
         PageFactory.initElements(driver, this);

@@ -21,7 +21,7 @@ import java.util.Map;
 
 @Configuration
 public class WebDriverConfig {
-    @Value("${implicit.wait}")
+    @Value("${wait.implicit}")
     private int implicitWait;
     @Value("${browser_headless:true}")
     private boolean isHeadless;

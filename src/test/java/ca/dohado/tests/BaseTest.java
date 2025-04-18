@@ -1,7 +1,7 @@
 package ca.dohado.tests;
 
 import ca.dohado.config.CustomTestExecutionListener;
-import ca.dohado.pages.LoginPage;
+import ca.dohado.pages.MainPage;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +19,7 @@ import org.springframework.test.context.TestExecutionListeners;
 //@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class BaseTest {
     @Autowired
-    protected LoginPage loginPage;
+    protected MainPage mainPage;
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     protected SoftAssertions softly;
 
@@ -27,7 +27,7 @@ public abstract class BaseTest {
     public void globalBeforeEach(TestInfo testInfo) {
         softly = new SoftAssertions();
         logger.info("Executing test {}", testInfo.getDisplayName());
-        loginPage.openLoginPage();
+        mainPage.openMainPage();
     }
 
     @AfterEach
