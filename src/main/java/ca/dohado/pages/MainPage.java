@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import static ca.dohado.framework.utils.Utils.*;
+
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MainPage extends AbstractPage {
@@ -32,6 +34,10 @@ public class MainPage extends AbstractPage {
 
     public String getHeader() {
         return header.getText();
+    }
+
+    public List<String> getPagesReferencesNames() {
+        return getElementsStrings(pages);
     }
 
 }
