@@ -1,9 +1,13 @@
 package ca.dohado.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Wait;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -21,11 +25,17 @@ public class MainPage extends AbstractPage {
     WebElement header;
     @FindBy(css = "#content > ul > li")
     List<WebElement> pages;
+    @FindBy(css = "")
     @Value("${main_page.url}")
     private String mainPageUrl;
+    @Value("${main_page.links_names}")
+    private List<String> pageNames;
+    @Autowired
+    private AddRemoveElementsPage addRemoveElementsPage;
 
     public MainPage(WebDriver driver, Wait<?> wait) {
         super(driver, wait);
+        initElements();
     }
 
     public void openMainPage() {
@@ -38,6 +48,17 @@ public class MainPage extends AbstractPage {
 
     public List<String> getPagesReferencesNames() {
         return getElementsStrings(pages);
+    }
+
+    public AddRemoveElementsPage openAddRemoveElementsPage() {
+        openPage(1, addRemoveElementsPage);
+        return addRemoveElementsPage;
+    }
+
+    private void openPage(int index, AbstractPage page) {
+        String name = pageNames.get(index);
+        getElementByName(pages, name).findElement(By.tagName("a")).click();
+        page.initElements();
     }
 
 }
