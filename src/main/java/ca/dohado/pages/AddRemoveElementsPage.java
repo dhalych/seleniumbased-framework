@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,7 @@ public class AddRemoveElementsPage extends AbstractPage {
     @FindBy(css = "#elements button")
     List<WebElement> addedElements;
 
-    public AddRemoveElementsPage(WebDriver driver, Wait<?> wait) {
+    public AddRemoveElementsPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
     }
 

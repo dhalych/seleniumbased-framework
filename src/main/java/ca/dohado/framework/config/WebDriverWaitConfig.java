@@ -20,7 +20,7 @@ public class WebDriverWaitConfig {
     private int explicitWait;
 
     @Bean
-    public Wait<?> webDriverWait(WebDriver driver) {
+    public WebDriverWait webDriverWait(WebDriver driver) {
         return new WebDriverWait(driver, Duration.ofSeconds(explicitWait));
     }
 

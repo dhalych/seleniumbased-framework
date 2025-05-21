@@ -1,12 +1,12 @@
 package ca.dohado.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -33,7 +33,7 @@ public class MainPage extends AbstractPage {
     @Autowired
     private AddRemoveElementsPage addRemoveElementsPage;
 
-    public MainPage(WebDriver driver, Wait<?> wait) {
+    public MainPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
         initElements();
     }
@@ -52,6 +52,9 @@ public class MainPage extends AbstractPage {
 
     public AddRemoveElementsPage openAddRemoveElementsPage() {
         openPage(1, addRemoveElementsPage);
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("dsfd")));
+
         return addRemoveElementsPage;
     }
 
