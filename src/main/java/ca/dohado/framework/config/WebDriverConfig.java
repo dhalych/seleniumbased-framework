@@ -44,7 +44,7 @@ public class WebDriverConfig {
         if (isHeadless) {
             options.addArguments("--headless");
         }
-        return manageDriver(new FirefoxDriver(options));
+        return new FirefoxDriver(options);
     }
 
     @WebDriverBean
@@ -53,7 +53,7 @@ public class WebDriverConfig {
         logger.info("Instantiating Edge Driver");
         EdgeOptions options = new EdgeOptions();
         setOptionsForChromium(options);
-        return manageDriver(new EdgeDriver(options));
+        return new EdgeDriver(options);
     }
 
     @WebDriverBean
@@ -62,12 +62,7 @@ public class WebDriverConfig {
         logger.info("Instantiating Chrome Driver");
         ChromeOptions options = new ChromeOptions();
         setOptionsForChromium(options);
-        return manageDriver(new ChromeDriver(options));
-    }
-
-    private WebDriver manageDriver(WebDriver driver) {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
-        return driver;
+        return new ChromeDriver(options);
     }
 
     private void setOptionsForChromium(ChromiumOptions<?> options) {
